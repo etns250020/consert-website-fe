@@ -89,17 +89,21 @@ const Home = () => {
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Navigation */}
       {/* <nav className="fixed top-0 w-full z-50 px-6 py-4 bg-black/80 backdrop-blur-md"> */}
-      
+
       {/* Hero Section with Video Background */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen flex  items-center justify-center overflow-hidden">
         {/* Video Background */}
-        <div className="absolute inset-0 z-0">
+                <div className="h-15 bg-blue-300">
+
+        </div>
+        <div className="absolute inset-0 z-0 ">
           {/* This would be your high-quality AI generated concert video */}
 
           <div>
             <img src="/textImg.jpg" alt="" />
           </div>
         </div>
+
 
         {/* Hero Content */}
         <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
