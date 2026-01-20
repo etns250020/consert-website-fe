@@ -35,7 +35,7 @@ export function Navigation() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="px-3 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors"
+                className="px-3 py-2 text-sm text-fuchsia-900 font-medium text-foreground hover:text-primary transition-colors"
               >
                 {item.label}
               </Link>
