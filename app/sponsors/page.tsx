@@ -97,8 +97,8 @@ const Sponsors = () => {
 
   const circleVariants = {
     initial: { scale: 0, rotate: 0 },
-    animate: { 
-      scale: 1, 
+    animate: {
+      scale: 1,
       rotate: 360,
       transition: {
         type: "spring",
@@ -128,14 +128,14 @@ const Sponsors = () => {
           <div className="absolute top-20 left-1/3 w-80 h-80 bg-yellow-500/15 rounded-full blur-3xl animate-pulse delay-500" />
           <div className="absolute top-10 right-1/3 w-72 h-72 bg-cyan-500/15 rounded-full blur-3xl animate-pulse delay-1500" />
         </div>
-        
+
         {/* Middle Rangoli Pattern - Symmetrical gradients */}
         <div className="absolute top-1/4 left-0 right-0 h-96">
           <div className="absolute left-20 top-20 w-64 h-64 bg-gradient-to-br from-purple-600/10 to-pink-600/10 rounded-full blur-3xl" />
           <div className="absolute right-20 top-20 w-64 h-64 bg-gradient-to-bl from-yellow-500/10 to-orange-500/10 rounded-full blur-3xl" />
           <div className="absolute left-1/2 -translate-x-1/2 top-40 w-80 h-80 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-full blur-3xl" />
         </div>
-        
+
         {/* Bottom Rangoli Pattern - Color bursts */}
         <div className="absolute bottom-0 left-0 right-0 h-96">
           <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-green-600/10 rounded-full blur-3xl animate-pulse delay-700" />
@@ -146,7 +146,7 @@ const Sponsors = () => {
 
         {/* Overlay Gradient - Creates the rangoli color flow effect */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black" />
-        
+
         {/* Rangoli Diamond Pattern Overlay */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent" />
@@ -202,17 +202,16 @@ const Sponsors = () => {
           <p className="text-xl text-gray-200 max-w-3xl mx-auto backdrop-blur-sm bg-black/20 p-4 rounded-2xl">
             Powered by industry leaders who believe in the magic of music
           </p>
-          
+
           {/* Tier Legend */}
           <div className="flex flex-wrap justify-center gap-6 mt-8 backdrop-blur-sm bg-black/30 p-4 rounded-2xl max-w-2xl mx-auto">
             {["Platinum", "Gold", "Silver", "Bronze"].map((tier) => (
               <div key={tier} className="flex items-center gap-2">
-                <div className={`w-4 h-4 rounded-full ${
-                  tier === "Platinum" ? "bg-gradient-to-r from-purple-600 to-pink-500" :
-                  tier === "Gold" ? "bg-gradient-to-r from-yellow-500 to-orange-500" :
-                  tier === "Silver" ? "bg-gradient-to-r from-gray-400 to-gray-300" :
-                  "bg-gradient-to-r from-amber-700 to-amber-600"
-                }`} />
+                <div className={`w-4 h-4 rounded-full ${tier === "Platinum" ? "bg-gradient-to-r from-purple-600 to-pink-500" :
+                    tier === "Gold" ? "bg-gradient-to-r from-yellow-500 to-orange-500" :
+                      tier === "Silver" ? "bg-gradient-to-r from-gray-400 to-gray-300" :
+                        "bg-gradient-to-r from-amber-700 to-amber-600"
+                  }`} />
                 <span className="text-sm font-medium">{tier}</span>
               </div>
             ))}
@@ -244,19 +243,19 @@ const Sponsors = () => {
                 >
                   {/* Inner glow */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
-                  
+
                   {/* Animated rings */}
-                  <motion.div 
+                  <motion.div
                     className="absolute inset-0 rounded-full border-2 border-white/20"
                     animate={{ rotate: 360 }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                   />
-                  <motion.div 
+                  <motion.div
                     className="absolute inset-4 rounded-full border border-white/10"
                     animate={{ rotate: -360 }}
                     transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
                   />
-                  
+
                   {/* Logo/Icon */}
                   <div className="relative z-10 text-white">
                     {sponsor.icon}
@@ -268,39 +267,38 @@ const Sponsors = () => {
               {/* Sponsor Info */}
               <div className="text-center">
                 <div className="mb-4">
-                  <span className={`inline-block px-4 py-1 rounded-full text-sm font-semibold backdrop-blur-md ${
-                    sponsor.tier === "Platinum" ? "bg-gradient-to-r from-purple-600/30 to-pink-500/30 text-purple-200 border border-purple-500/30" :
-                    sponsor.tier === "Gold" ? "bg-gradient-to-r from-yellow-500/30 to-orange-500/30 text-yellow-200 border border-yellow-500/30" :
-                    sponsor.tier === "Silver" ? "bg-gradient-to-r from-gray-400/30 to-gray-300/30 text-gray-200 border border-gray-400/30" :
-                    "bg-gradient-to-r from-amber-700/30 to-amber-600/30 text-amber-200 border border-amber-600/30"
-                  }`}>
+                  <span className={`inline-block px-4 py-1 rounded-full text-sm font-semibold backdrop-blur-md ${sponsor.tier === "Platinum" ? "bg-gradient-to-r from-purple-600/30 to-pink-500/30 text-purple-200 border border-purple-500/30" :
+                      sponsor.tier === "Gold" ? "bg-gradient-to-r from-yellow-500/30 to-orange-500/30 text-yellow-200 border border-yellow-500/30" :
+                        sponsor.tier === "Silver" ? "bg-gradient-to-r from-gray-400/30 to-gray-300/30 text-gray-200 border border-gray-400/30" :
+                          "bg-gradient-to-r from-amber-700/30 to-amber-600/30 text-amber-200 border border-amber-600/30"
+                    }`}>
                     {sponsor.tier} Partner
                   </span>
                 </div>
-                
+
                 <h3 className="text-2xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
                   {sponsor.contribution}
                 </h3>
                 <p className="text-gray-300 mb-4 backdrop-blur-sm bg-black/30 p-3 rounded-xl">
                   {sponsor.description}
                 </p>
-                
+
                 {/* Contribution Bar */}
                 <div className="relative h-2 bg-gray-900/80 rounded-full overflow-hidden mt-4 backdrop-blur-sm">
                   <motion.div
                     initial={{ width: 0 }}
-                    animate={{ width: 
-                      sponsor.tier === "Platinum" ? "100%" :
-                      sponsor.tier === "Gold" ? "75%" :
-                      sponsor.tier === "Silver" ? "50%" : "25%"
+                    animate={{
+                      width:
+                        sponsor.tier === "Platinum" ? "100%" :
+                          sponsor.tier === "Gold" ? "75%" :
+                            sponsor.tier === "Silver" ? "50%" : "25%"
                     }}
                     transition={{ duration: 1, delay: 0.5 }}
-                    className={`absolute h-full rounded-full ${
-                      sponsor.tier === "Platinum" ? "bg-gradient-to-r from-purple-600 to-pink-500" :
-                      sponsor.tier === "Gold" ? "bg-gradient-to-r from-yellow-500 to-orange-500" :
-                      sponsor.tier === "Silver" ? "bg-gradient-to-r from-gray-400 to-gray-300" :
-                      "bg-gradient-to-r from-amber-700 to-amber-600"
-                    }`}
+                    className={`absolute h-full rounded-full ${sponsor.tier === "Platinum" ? "bg-gradient-to-r from-purple-600 to-pink-500" :
+                        sponsor.tier === "Gold" ? "bg-gradient-to-r from-yellow-500 to-orange-500" :
+                          sponsor.tier === "Silver" ? "bg-gradient-to-r from-gray-400 to-gray-300" :
+                            "bg-gradient-to-r from-amber-700 to-amber-600"
+                      }`}
                   />
                 </div>
               </div>
@@ -328,7 +326,7 @@ const Sponsors = () => {
             className="relative overflow-hidden bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 group"
           >
             <span className="relative z-10">Partner With Us</span>
-            <motion.div 
+            <motion.div
               className="absolute inset-0 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600"
               animate={{ x: ["0%", "100%", "0%"] }}
               transition={{ duration: 3, repeat: Infinity }}

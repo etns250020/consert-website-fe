@@ -93,7 +93,7 @@ const Home = () => {
       {/* Hero Section with Video Background */}
       <section className="relative h-screen flex  items-center justify-center overflow-hidden">
         {/* Video Background */}
-                <div className="h-15 bg-blue-300">
+        <div className="h-15 bg-blue-300">
 
         </div>
         <div className="absolute inset-0 z-0 ">
@@ -215,11 +215,10 @@ const Home = () => {
             <button
               key={category.id}
               onClick={() => setActiveFilter(category.id)}
-              className={`px-6 py-3 rounded-full font-medium transition-all ${
-                activeFilter === category.id
+              className={`px-6 py-3 rounded-full font-medium transition-all ${activeFilter === category.id
                   ? "bg-gradient-to-r from-purple-600 to-pink-600"
                   : "bg-white/10 hover:bg-white/20"
-              }`}
+                }`}
             >
               {category.label}
             </button>
@@ -236,9 +235,8 @@ const Home = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -10 }}
-              className={`bg-gradient-to-br from-gray-900 to-black rounded-2xl overflow-hidden border border-gray-800 group cursor-pointer ${
-                event.featured ? "md:col-span-2 md:row-span-2" : ""
-              }`}
+              className={`bg-gradient-to-br from-gray-900 to-black rounded-2xl overflow-hidden border border-gray-800 group cursor-pointer ${event.featured ? "md:col-span-2 md:row-span-2" : ""
+                }`}
             >
               <div className="relative h-64 overflow-hidden">
                 {/* Event image placeholder */}

@@ -251,9 +251,8 @@ const SchedulePage = () => {
                         className="absolute top-3 right-3 p-2 rounded-full bg-black/50"
                       >
                         <Heart
-                          className={`w-4 h-4 transition ${
-                            isFav ? "fill-red-500 text-red-500" : "text-white"
-                          }`}
+                          className={`w-4 h-4 transition ${isFav ? "fill-red-500 text-red-500" : "text-white"
+                            }`}
                         />
                       </motion.button>
                     </div>

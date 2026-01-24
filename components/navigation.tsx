@@ -19,7 +19,7 @@ export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 h-20 bg-purple-100 backdrop-blur-md border-b border-white/10">
+    <nav className="fixed top-0 left-0 right-0 z-50 h-20 bg-black/40 backdrop-blur-xl border-b border-white/5">
       <div className="h-full px-4 sm:px-6 lg:px-8">
         <div className="h-full max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
@@ -49,7 +49,7 @@ export function Navigation() {
                 >
                   <Link
                     href={item.href}
-                    className="px-4 py-2 text-gray-700 hover:text-gray-900 transition-colors duration-200 font-medium text-sm uppercase tracking-wide"
+                    className="px-4 py-2 text-white/70 hover:text-white transition-all duration-300 font-bold text-sm uppercase tracking-widest hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
                   >
                     {item.label}
                   </Link>
@@ -79,9 +79,9 @@ export function Navigation() {
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
             {isMenuOpen ? (
-              <X size={28} className="text-gray-700" />
+              <X size={28} className="text-white" />
             ) : (
-              <Menu size={28} className="text-gray-700" />
+              <Menu size={28} className="text-white" />
             )}
           </button>
         </div>
@@ -95,14 +95,14 @@ export function Navigation() {
           opacity: isMenuOpen ? 1 : 0,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="lg:hidden overflow-hidden bg-white/95 backdrop-blur-lg border-b border-white/10"
+        className="lg:hidden overflow-hidden bg-black/90 backdrop-blur-2xl border-b border-white/10"
       >
         <div className="px-4 py-6 space-y-4">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="block px-4 py-3 text-gray-700 hover:text-gray-900 hover:bg-white/50 rounded-lg transition-all duration-200 font-medium text-base"
+              className="block px-4 py-3 text-white/80 hover:text-white hover:bg-white/10 rounded-xl transition-all duration-200 font-bold text-lg uppercase tracking-wide"
               onClick={() => setIsMenuOpen(false)}
             >
               {item.label}
@@ -122,3 +122,4 @@ export function Navigation() {
     </nav>
   )
 }
+// 
