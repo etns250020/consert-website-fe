@@ -50,7 +50,7 @@ export const FloatingInput: React.FC<FloatingInputProps> = ({
                 htmlFor={id}
                 initial={false}
                 animate={{
-                    top: isFocused || hasValue ? -10 : isTextArea ? 16 : "50%",
+                    top: isFocused || hasValue ? -10 : "50%",
                     left: Icon ? 44 : 16,
                     scale: isFocused || hasValue ? 0.85 : 1,
                     y: isFocused || hasValue ? 0 : "-50%",

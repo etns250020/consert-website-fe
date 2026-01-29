@@ -24,7 +24,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </div>
-        <MusicalBackground />
+        {/* <MusicalBackground /> */}
         <Analytics />
       </body>
     </html>

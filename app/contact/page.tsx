@@ -149,7 +149,7 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen bg-transparent">
       {/* --- HERO SECTION --- */}
-      <section className="relative h-[70vh] min-h-[600px] w-full flex flex-col items-center justify-center overflow-hidden">
+      <section className="relative h-[60vh] min-h-[500px] w-full flex flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-concert-gradient opacity-20 pointer-events-none [mask-image:linear-gradient(to_bottom,black_70%,transparent)]" />
 
         {/* Member Avatars */}
@@ -159,7 +159,7 @@ const ContactPage = () => {
 
         <div className="relative z-10 text-center px-4 max-w-4xl">
           <ScrollReveal direction="up">
-            <h1 className="text-6xl md:text-8xl font-black text-white mb-6 tracking-tight text-glow">
+            <h1 className="text-4xl md:text-7xl font-black text-white mb-6 tracking-tight text-glow">
               Let's <span className="bg-gradient-to-r from-[#ffc371] to-[#ff5f6d] bg-clip-text text-transparent">Connect</span>
             </h1>
           </ScrollReveal>
@@ -172,63 +172,122 @@ const ContactPage = () => {
       </section>
 
       <SectionSeparator />
+      {/* --- CREW SECTION --- */}
+      <section className="relative px-4 pb-10 max-w-7xl mx-auto  ">
+        <ScrollReveal direction="up" className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight flex items-center justify-center gap-2 ">
+            <span className="flex">
+              <motion.span
+                className="inline-block "
+                whileInView={{
+                  y: [0, -20, 0],
+                  x: [0, 25, 0],
+                  rotate: [0, 15, 0]
+                }}
+                viewport={{ once: false, amount: 0.5 }}
+                transition={{
+                  duration: 1.2,
+                  repeat: Infinity,
+                  repeatDelay: 3,
+                  ease: "easeInOut"
+                }}
+              >
+                O
+              </motion.span>
+              <span>ur</span>
+            </span>
+            <span className="bg-gradient-to-r from-[#805ad5] to-[#4299e1] bg-clip-text text-transparent ml-2">Elite Crew</span>
+          </h2>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            The masterminds behind every beat, light, and moment of magic.
+          </p>
+        </ScrollReveal>
 
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="w-auto mx-auto px-4 md:px-12"
+        >
+          <CarouselContent className="-ml-4 md:-ml-8">
+            {crewMembers.map((member) => (
+              <CarouselItem key={member.id} className="pl-4 md:pl-8 md:basis-1/2 lg:basis-1/4">
+                <ScrollReveal delay={member.id * 0.1}>
+                  <div className="group [perspective:1000px] w-full aspect-[3/4]">
+                    <motion.div
+                      className="relative w-full h-full transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]"
+                    >
+                      {/* Front Side */}
+                      <Card className="absolute inset-0 bg-glass border-none overflow-hidden p-0 [backface-visibility:hidden]">
+                        <CardContent className="p-0 h-full">
+                          <div className="relative h-full overflow-hidden">
+                            <img
+                              src={member.image}
+                              alt={member.name}
+                              className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60" />
+                            <div className="absolute bottom-0 left-0 p-6 w-full">
+                              <p className="text-white text-xl font-bold mb-0">{member.name}</p>
+                              <p className="text-[#ff5f6d] font-medium tracking-wide uppercase text-xs">{member.role}</p>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+
+                      {/* Back Side */}
+                      <Card className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e] to-[#16213e] border border-white/10 overflow-hidden p-0 [backface-visibility:hidden] [transform:rotateY(180deg)] shadow-2xl">
+                        <CardContent className="p-0 h-full flex flex-col items-center justify-center text-center p-6">
+                          <div className="w-20 h-20 rounded-full border-2 border-[#ff5f6d] overflow-hidden mb-4">
+                            <img src={member.image} alt={member.name} className="w-full h-full object-cover scale-110" />
+                          </div>
+                          <h3 className="text-white text-2xl font-bold mb-2">{member.name}</h3>
+                          <div className="w-12 h-1 bg-[#ff5f6d] rounded-full mb-4" />
+                          <p className="text-gray-300 text-lg font-medium mb-1">{member.role}</p>
+                          <p className="text-gray-500 text-sm mt-4 italic">"Expert in creating unforgettable experiences"</p>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  </div>
+                </ScrollReveal>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="hidden md:flex -left-4 bg-glass border-none text-white hover:bg-white/10" />
+          <CarouselNext className="hidden md:flex -right-4 bg-glass border-none text-white hover:bg-white/10" />
+        </Carousel>
+      </section>
+      <h2 className="text-3xl font-bold text-white mb-0 flex items-center gap-4 px-36 mb-6">
+        <span className="w-10 h-1 bg-[#ff5f6d] rounded-full" />
+        Our Location
+      </h2>
       {/* --- CONTENT SECTION --- */}
-      <section className="relative z-20 pb-20 px-4 md:px-8 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+      <section className="relative z-20 pb-16 px-4 md:px-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
 
-          {/* Left Column: Contact Info */}
-          <div className="space-y-12">
+          {/* Left Column: Map */}
+          <div className="space-y-0 h-full">
             <ScrollReveal direction="left">
-              <h2 className="text-4xl font-bold text-white mb-12 flex items-center gap-4">
-                <span className="w-12 h-1 bg-[#ff5f6d] rounded-full" />
-                Get in touch
-              </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8">
-                {/* Phone */}
-                <ScrollReveal direction="left" delay={0.1} className="flex gap-6 items-start p-6 bg-glass rounded-[2rem] hover:bg-white/15 transition-all">
-                  <div className="p-4 bg-[#ff5f6d]/20 text-[#ff5f6d] rounded-2xl">
-                    <Phone size={24} />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-white mb-1">Phone</h3>
-                    <p className="text-gray-400 text-sm">Mon-Fri, 9am - 6pm EST</p>
-                    <p className="text-[#ffc371] font-medium mt-1">+1 (555) 123-4567</p>
-                  </div>
-                </ScrollReveal>
-
-                {/* Email */}
-                <ScrollReveal direction="left" delay={0.2} className="flex gap-6 items-start p-6 bg-glass rounded-[2rem] hover:bg-white/15 transition-all">
-                  <div className="p-4 bg-[#4299e1]/20 text-[#4299e1] rounded-2xl">
-                    <Mail size={24} />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-white mb-1">Email</h3>
-                    <div className="flex flex-col gap-1 text-[#ff5f6d] font-medium">
-                      <a href="mailto:hello@concert.app" className="hover:underline">hello@concert.app</a>
-                    </div>
-                  </div>
-                </ScrollReveal>
-
-                {/* Address */}
-                <ScrollReveal direction="left" delay={0.3} className="flex gap-6 items-start p-6 bg-glass rounded-[2rem] hover:bg-white/15 transition-all">
-                  <div className="p-4 bg-[#805ad5]/20 text-[#805ad5] rounded-2xl">
-                    <MapPin size={24} />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-white mb-1">Main Office</h3>
-                    <p className="text-gray-400 text-sm">709 Broadway Road, Manhattan, NY</p>
-                  </div>
-                </ScrollReveal>
+              <div className="w-full h-[500px] rounded-xl overflow-hidden  border-white/5 shadow-2xl contrast-125 brightness-65 ">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.2528082187!2d-74.11976373988643!3d40.69740344223377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
               </div>
             </ScrollReveal>
           </div>
 
           {/* Right Column: Form Card */}
-          <ScrollReveal direction="right" className="bg-glass rounded-[3rem] p-8 md:p-12 border border-white/10 shadow-3xl">
-            <form onSubmit={handleSubmit} className="space-y-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <ScrollReveal direction="right" className="bg-glass rounded-xl p-6 md:p-8 mb-0 border border-white/10 shadow-3xl">
+            <form onSubmit={handleSubmit} className="space-y-8 mb-0">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-5">
                 <FloatingInput
                   id="firstName"
                   label="First name"
@@ -267,83 +326,96 @@ const ContactPage = () => {
                 required
               />
 
-              <motion.button
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                type="submit"
-                className="w-full py-5 bg-concert-gradient text-white font-black text-lg rounded-2xl shadow-2xl shadow-[#ff5f6d]/30 hover:shadow-[#ff5f6d]/50 transition-all duration-300 flex items-center justify-center gap-3 uppercase tracking-wider"
-              >
-                <Send size={24} />
-                Beam Message
-              </motion.button>
+              <div className="pt-2">
+                <motion.button
+                  whileHover={{ scale: 1.01, y: -1 }}
+                  whileTap={{ scale: 0.99 }}
+                  type="submit"
+                  className="w-full py-4 bg-concert-gradient text-white font-bold text-base rounded-md shadow-xl shadow-[#ff5f6d]/20 hover:shadow-[#ff5f6d]/40 transition-all duration-300 flex items-center justify-center gap-3 uppercase tracking-wider text-sm font-semibold "
+                >
+                  <Send size={20} />
+                  Submit
+                </motion.button>
+              </div>
             </form>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* --- MAP SECTION --- */}
-      <section className="relative px-4 pb-10 w-[92vw] mx-auto">
-        <ScrollReveal direction="bottom">
-          <div className="w-full h-[500px] rounded-[2rem] overflow-hidden border-8 border-white/5 shadow-2xl   contrast-125">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.2528082187!2d-74.11976373988643!3d40.69740344223377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen={true}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
-        </ScrollReveal>
-      </section>
-
-      {/* --- CREW SECTION --- */}
-      <section className="relative px-4 pb-10 max-w-7xl mx-auto overflow-hidden">
-        <ScrollReveal direction="up" className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-black text-white mb-4 tracking-tight">
-            Our <span className="bg-gradient-to-r from-[#805ad5] to-[#4299e1] bg-clip-text text-transparent">Elite Crew</span>
-          </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            The masterminds behind every beat, light, and moment of magic.
-          </p>
-        </ScrollReveal>
-
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="w-auto mx-auto px-4 md:px-12"
+      {/* --- QUICK CONTACT SECTION --- */}
+      <section className="relative px-4 pb-16 max-w-6xl mx-auto overflow-hidden">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
         >
-          <CarouselContent className="-ml-4 md:-ml-8">
-            {crewMembers.map((member) => (
-              <CarouselItem key={member.id} className="pl-4 md:pl-8 md:basis-1/2 lg:basis-1/4">
-                <ScrollReveal delay={member.id * 0.1}>
-                  <Card className="bg-glass border-none overflow-hidden group hover:scale-[1.02] transition-transform duration-500 p-0">
-                    <CardContent className="p-0">
-                      <div className="relative aspect-[3/4] overflow-hidden">
-                        <img
-                          src={member.image}
-                          alt={member.name}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+          {/* Phone Card */}
+          <motion.div
+            variants={{
+              hidden: { x: "-100vw", opacity: 0 },
+              visible: {
+                x: 0,
+                opacity: 1,
+                transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+              }
+            }}
+            // whileHover={{ y: -5 }}
+            className="group flex items-center gap-6 p-6 bg-gradient-to-br from-[#ff5f6d]/20 to-white/5 backdrop-blur-md rounded-xl border border-[#ff5f6d]/20 hover:border-[#ff5f6d]/40 transition-all duration-500"
+          >
+            <div className="w-14 h-14 bg-[#ff5f6d]/20 text-[#ff5f6d] rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500 shrink-0">
+              <Phone size={28} />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1">Phone</h3>
+              <p className="text-[#ffc371] font-bold">+1 (555) 123-4567</p>
+            </div>
+          </motion.div>
 
-                        <div className="absolute bottom-0 left-0 p-8 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform">
-                          <p className="text-white text-2xl font-bold mb-1">{member.name}</p>
-                          <p className="text-[#ff5f6d] font-medium tracking-wide uppercase text-sm">{member.role}</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </ScrollReveal>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="hidden md:flex -left-4 bg-glass border-none text-white hover:bg-white/10" />
-          <CarouselNext className="hidden md:flex -right-4 bg-glass border-none text-white hover:bg-white/10" />
-        </Carousel>
+          {/* Email Card */}
+          <motion.div
+            variants={{
+              hidden: { x: "-100vw", opacity: 0 },
+              visible: {
+                x: 0,
+                opacity: 1,
+                transition: { duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }
+              }
+            }}
+            // whileHover={{ y: -5 }}
+            className="group flex items-center gap-6 p-6 bg-gradient-to-br from-[#4299e1]/20 to-white/5 backdrop-blur-md rounded-xl border border-[#4299e1]/20 hover:border-[#4299e1]/40 transition-all duration-500"
+          >
+            <div className="w-14 h-14 bg-[#4299e1]/20 text-[#4299e1] rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500 shrink-0">
+              <Mail size={28} />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1">Email</h3>
+              <a href="mailto:hello@concert.app" className="text-[#4299e1] font-bold hover:underline">hello@concert.app</a>
+            </div>
+          </motion.div>
+
+          {/* Address Card */}
+          <motion.div
+            variants={{
+              hidden: { x: "-100vw", opacity: 0 },
+              visible: {
+                x: 0,
+                opacity: 1,
+                transition: { duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }
+              }
+            }}
+            // whileHover={{ y: -5 }}
+            className="group flex items-center gap-6 p-6 bg-gradient-to-br from-[#805ad5]/20 to-white/5 backdrop-blur-md rounded-xl border border-[#805ad5]/20 hover:border-[#805ad5]/40 transition-all duration-500"
+          >
+            <div className="w-14 h-14 bg-[#805ad5]/20 text-[#805ad5] rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500 shrink-0">
+              <MapPin size={28} />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1">Main Office</h3>
+              <p className="text-white text-sm font-medium">709 Broadway, NY</p>
+            </div>
+          </motion.div>
+        </motion.div>
       </section>
     </div>
   )
