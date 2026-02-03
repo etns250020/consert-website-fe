@@ -19,7 +19,12 @@ export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 h-15 bg-gradient-to-r from-white via-pink-400/30 to-red-400/30 border-b border-white/5">
+<nav 
+  className="fixed top-0 left-0 right-0 z-50 h-16 backdrop-blur-xl border-b border-white/10 shadow-xl"
+  style={{
+    background: 'linear-gradient(to right, #ccffff 0%, #990033 90%)'
+  }}
+>
       <div className="h-full px-4 sm:px-6 lg:px-8">
         <div className="h-full max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}

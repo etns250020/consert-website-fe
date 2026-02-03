@@ -40,6 +40,7 @@ interface Sponsor {
   contribution: string;
   description: string;
   icon: React.ReactNode;
+  img?: string;
 }
 
 const sponsors: Sponsor[] = [
@@ -87,6 +88,7 @@ const sponsors: Sponsor[] = [
     contribution: "Refreshment Partner",
     description: "Official beverage sponsor",
     icon: <Trophy className="w-7 h-7" />,
+    img:`/tata-Con.pn`
   },
   {
     id: 6,
@@ -324,6 +326,7 @@ export default function SponsorsPage() {
                           <span className="mt-3 font-bold text-lg tracking-tight">
                             {sponsor.name}
                           </span>
+                          {/* <img src={img} alt="" /> */}
                         </div>
                       </div>
                     </div>
