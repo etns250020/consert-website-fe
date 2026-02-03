@@ -213,7 +213,7 @@ const SchedulePage = () => {
           </h2>
 
           {/* GRID */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-8">
             {artists.map((artist, i) => {
               const isFav = favorites.includes(artist.name);
 

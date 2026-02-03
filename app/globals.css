@@ -5,7 +5,8 @@
 
 :root {
   /* Updated color scheme for concert theme - dark background with vibrant accents */
-  --background: oklch(88.914% 0.02396 240.246);
+  /* --background: oklch(88.914% 0.02396 240.246); */
+  --background: oklch(75.491% 0.00632 240.261);
   --foreground: oklch(0.98 0 0);
   --card: oklch(0.18 0 0);
   --card-foreground: oklch(0.98 0 0);
