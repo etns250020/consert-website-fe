@@ -1,9 +1,10 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import Link from "next/link"
-import { Menu, X } from "lucide-react"
-import { useState } from "react"
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
+import { BookNowDialog } from "@/app/schedule/BookPop";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -13,18 +14,19 @@ const navItems = [
   { label: "Gallery", href: "/gallery" },
   { label: "Sponsors", href: "/sponsors" },
   { label: "Contact", href: "/contact" },
-]
+];
 
 export function Navigation() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
-<nav 
-  className="fixed top-0 left-0 right-0 z-50 h-16 backdrop-blur-xl border-b border-white/10 shadow-xl"
-  style={{
-    background: 'linear-gradient(to right, #ccffff 0%, #990033 90%)'
-  }}
->
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 h-16 backdrop-blur-xl border-b border-white/10 shadow-xl"
+      style={{
+        background: "linear-gradient(to right, #ccffff 0%, #990033 90%)",
+      }}
+    >
       <div className="h-full px-4 sm:px-6 lg:px-8">
         <div className="h-full max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
@@ -70,10 +72,13 @@ export function Navigation() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full font-semibold text-sm shadow-lg hover:shadow-xl transition-shadow duration-200"
+                onClick={() => setOpen(true)}
+                className="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full"
               >
                 Book Now
               </motion.button>
+
+              <BookNowDialog open={open} onOpenChange={setOpen} />
             </motion.div>
           </div>
 
@@ -125,6 +130,6 @@ export function Navigation() {
         </div>
       </motion.div>
     </nav>
-  )
+  );
 }
-// 
+//

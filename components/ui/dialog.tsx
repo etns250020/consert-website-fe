@@ -88,6 +88,57 @@ function DialogContent({
   );
 }
 
+function DialogContent2({
+  className,
+  children,
+  showCloseButton = true,
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Content> & {
+  showCloseButton?: boolean;
+}) {
+  return (
+    <DialogPortal>
+      <DialogOverlay />
+
+      <DialogPrimitive.Content
+        {...props}
+        className={cn(
+          /* Base */
+          "bg-background fixed z-50 grid gap-4 border shadow-lg",
+          "data-[state=open]:animate-in data-[state=closed]:animate-out",
+          "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+          "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+          "duration-200",
+          "inset-0 w-full h-full rounded-none p-4",
+          "sm:inset-auto sm:left-1/2 sm:top-1/2",
+          "sm:translate-x-[-50%] sm:translate-y-[-50%]",
+          "sm:w-[95vw] sm:max-w-[640px]",
+          "sm:h-auto sm:max-h-[90vh] sm:rounded-xl sm:p-6",
+          "lg:max-w-[900px]",
+          "xl:max-w-[1100px]",
+          "overflow-y-auto",
+
+          className
+        )}
+      >
+        {children}
+
+        {showCloseButton && (
+          <DialogPrimitive.Close
+            className={cn(
+              "absolute right-4 top-4 rounded-md opacity-70 transition-opacity",
+              "hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring"
+            )}
+          >
+            <XIcon className="h-4 w-4" />
+            <span className="sr-only">Close</span>
+          </DialogPrimitive.Close>
+        )}
+      </DialogPrimitive.Content>
+    </DialogPortal>
+  );
+}
+
 function DialogHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -141,6 +192,7 @@ export {
   Dialog,
   DialogClose,
   DialogContent,
+  DialogContent2,
   DialogDescription,
   DialogFooter,
   DialogHeader,

@@ -32,15 +32,16 @@ import {
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 
+// First, update your Sponsor type to include img property
 interface Sponsor {
   id: number;
   name: string;
-  tier: "Platinum" | "Gold" | "Silver" | "Bronze";
+  tier: string;
   logoColor: string;
   contribution: string;
   description: string;
   icon: React.ReactNode;
-  img?: string;
+  img?: string; // Add this optional property
 }
 
 const sponsors: Sponsor[] = [
@@ -52,6 +53,7 @@ const sponsors: Sponsor[] = [
     contribution: "Main Sound System",
     description: "Complete audio setup for all stages",
     icon: <Music className="w-8 h-8" />,
+    img: "/tata-Con.png", // Add image path
   },
   {
     id: 2,
@@ -61,6 +63,7 @@ const sponsors: Sponsor[] = [
     contribution: "Stage Design",
     description: "Main stage architecture and lighting",
     icon: <Sparkles className="w-8 h-8" />,
+    img: "/Bacr.jpg",
   },
   {
     id: 3,
@@ -70,6 +73,7 @@ const sponsors: Sponsor[] = [
     contribution: "Power Solutions",
     description: "Uninterrupted power supply across venue",
     icon: <Zap className="w-8 h-8" />,
+    img: "/LalC..png",
   },
   {
     id: 4,
@@ -79,6 +83,7 @@ const sponsors: Sponsor[] = [
     contribution: "Official Merchandise",
     description: "Exclusive concert merchandise partner",
     icon: <Award className="w-7 h-7" />,
+    img: "/Adt.b.jpg",
   },
   {
     id: 5,
@@ -88,7 +93,7 @@ const sponsors: Sponsor[] = [
     contribution: "Refreshment Partner",
     description: "Official beverage sponsor",
     icon: <Trophy className="w-7 h-7" />,
-    img:`/tata-Con.pn`
+    img: "/Mc.D.webp",
   },
   {
     id: 6,
@@ -98,6 +103,37 @@ const sponsors: Sponsor[] = [
     contribution: "Media Partner",
     description: "Digital streaming and recording",
     icon: <Star className="w-6 h-6" />,
+    img: "/P.ty.webp",
+  },
+  {
+    id: 7,
+    name: "Echo Merch",
+    tier: "Silver",
+    logoColor: "from-gray-400 to-gray-300",
+    contribution: "Official Merchandise",
+    description: "Exclusive concert merchandise partner",
+    icon: <Award className="w-7 h-7" />,
+    img: "/Adt.b.jpg",
+  },
+  {
+    id: 8,
+    name: "Pulse Beverages",
+    tier: "Silver",
+    logoColor: "from-green-500 to-emerald-400",
+    contribution: "Refreshment Partner",
+    description: "Official beverage sponsor",
+    icon: <Trophy className="w-7 h-7" />,
+    img: "/Mc.D.webp",
+  },
+  {
+    id: 9,
+    name: "Rhythm Records",
+    tier: "Bronze",
+    logoColor: "from-amber-700 to-amber-600",
+    contribution: "Media Partner",
+    description: "Digital streaming and recording",
+    icon: <Star className="w-6 h-6" />,
+    img: "/P.ty.webp",
   },
 ];
 
@@ -201,7 +237,7 @@ export default function SponsorsPage() {
             transition={{ duration: 0.6 }}
             className="text-5xl sm:text-7xl md:text-3xl font-black mb-6 relative"
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-pink-300 to-white animate-pulse">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r  from-yellow-300 via-pink-300 to-white animate-pulse">
               POWERED BY
             </span>
             <br />
@@ -270,7 +306,7 @@ export default function SponsorsPage() {
           {/* Decorative elements */}
           <div className="absolute -top-10 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent" />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 h-200 overflow-y-auto py-5 px-2">
             {sponsors.map((sponsor, index) => (
               <motion.div
                 key={sponsor.id}
@@ -312,28 +348,50 @@ export default function SponsorsPage() {
                     </div>
                   </div>
 
-                  {/* Logo with glow effect */}
+                  {/* Logo with glow effect - UPDATED TO FULL COVER */}
                   <div className="relative flex justify-center mb-8">
                     <div className="relative">
+                      {/* Optional: Keep the glow effect */}
                       <div
-                        className={`absolute inset-0 bg-gradient-to-r ${sponsor.logoColor} rounded-full blur-xl opacity-50`}
+                        className={`absolute inset-0 bg-gradient-to-r ${sponsor.logoColor} rounded-full blur-xl opacity-30`}
                       />
-                      <div
-                        className={`relative w-36 h-36 rounded-full bg-gradient-to-br ${sponsor.logoColor} flex flex-col items-center justify-center shadow-2xl border-2 border-white/20`}
-                      >
-                        <div className="relative z-10">
-                          {sponsor.icon}
-                          <span className="mt-3 font-bold text-lg tracking-tight">
-                            {sponsor.name}
-                          </span>
-                          {/* <img src={img} alt="" /> */}
-                        </div>
+
+                      {/* Circular container for the image */}
+                      <div className="relative w-36 h-36 rounded-full shadow-2xl border-2 border-white/20 overflow-hidden">
+                        {/* Show sponsor brand image if available */}
+                        {sponsor.img ? (
+                          <img
+                            src={sponsor.img}
+                            alt={sponsor.name}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              // Fallback to gradient background if image fails to load
+                              e.currentTarget.style.display = "none";
+                              e.currentTarget.parentElement?.classList.add(
+                                `bg-gradient-to-br`,
+                                ...sponsor.logoColor.split(" "),
+                              );
+                            }}
+                          />
+                        ) : (
+                          // Fallback to icon with gradient background
+                          <div
+                            className={`w-full h-full bg-gradient-to-br ${sponsor.logoColor} flex items-center justify-center`}
+                          >
+                            <div className="relative z-10 text-white">
+                              {sponsor.icon}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
 
-                  {/* Content */}
+                  {/* Rest of the content remains the same */}
                   <div className="text-center space-y-4">
+                    <span className="mt-3 font-bold text-lg tracking-tight">
+                      {sponsor.name}
+                    </span>
                     <h3 className="text-2xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
                       {sponsor.contribution}
                     </h3>
