@@ -285,20 +285,45 @@ const ContactPage = () => {
           </div>
 
           {/* Right Column: Form Card */}
-          <ScrollReveal direction="right" className="bg-glass rounded-xl p-6 md:p-8 mb-0 border border-white/10 shadow-3xl">
-            <form onSubmit={handleSubmit} className="space-y-8 mb-0">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-5">
+          <ScrollReveal
+            direction="right"
+            className="
+    rounded-2xl
+    p-4 md:p-6
+    bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))]
+    backdrop-blur-xl
+    border border-white/10
+    shadow-[0_20px_60px_rgba(0,0,0,0.45)]
+  "
+          >
+
+
+            {/* Form Header */}
+            <div className="mb-4">
+              <h3 className="text-2xl font-semibold text-white tracking-tight">
+                Get in Touch
+              </h3>
+              <p className="mt-2 text-sm text-white/70 leading-relaxed">
+                Planning a concert or live event? Share your details and our team will get
+                back to you shortly.
+              </p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Name Fields */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <FloatingInput
                   id="firstName"
-                  label="First name"
+                  label="First Name"
                   icon={UserIcon}
                   value={formData.firstName}
                   onChange={handleChange}
                   required
                 />
+
                 <FloatingInput
                   id="lastName"
-                  label="Last name"
+                  label="Last Name"
                   icon={Briefcase}
                   value={formData.lastName}
                   onChange={handleChange}
@@ -306,9 +331,10 @@ const ContactPage = () => {
                 />
               </div>
 
+              {/* Email */}
               <FloatingInput
                 id="email"
-                label="Email address"
+                label="Email Address"
                 type="email"
                 icon={Mail}
                 value={formData.email}
@@ -316,6 +342,7 @@ const ContactPage = () => {
                 required
               />
 
+              {/* Message */}
               <FloatingInput
                 id="message"
                 label="Tell us about your event"
@@ -326,19 +353,33 @@ const ContactPage = () => {
                 required
               />
 
-              <div className="pt-2">
+              {/* Submit */}
+              <div className="pt-4">
                 <motion.button
-                  whileHover={{ scale: 1.01, y: -1 }}
-                  whileTap={{ scale: 0.99 }}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.98 }}
                   type="submit"
-                  className="w-full py-4 bg-concert-gradient text-white font-bold text-base rounded-md shadow-xl shadow-[#ff5f6d]/20 hover:shadow-[#ff5f6d]/40 transition-all duration-300 flex items-center justify-center gap-3 uppercase tracking-wider text-sm font-semibold "
+                  className="
+            w-full py-4 rounded-lg
+            bg-concert-gradient
+            text-white text-sm font-semibold uppercase tracking-wider
+            flex items-center justify-center gap-3
+            shadow-lg shadow-[#ff5f6d]/20
+            hover:shadow-[#ff5f6d]/40
+            transition-all duration-300
+          "
                 >
-                  <Send size={20} />
-                  Submit
+                  <Send size={18} />
+                  Send Enquiry
                 </motion.button>
+
+                <p className="mt-3 text-xs text-white/50 text-center">
+                  We respect your privacy. Your information is safe with us.
+                </p>
               </div>
             </form>
           </ScrollReveal>
+
         </div>
       </section>
 

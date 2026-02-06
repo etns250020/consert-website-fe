@@ -58,7 +58,7 @@ export const FloatingInput: React.FC<FloatingInputProps> = ({
                     padding: isFocused || hasValue ? "0 4px" : "0",
                 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
-                className={`absolute pointer-events-none transition-colors duration-200 ${isFocused ? "text-primary font-medium" : "text-muted-foreground"
+                className={`absolute pointer-events-none transition-colors duration-200 ${isFocused ? "text-primary font-medium rounded-full  " : "text-muted-foreground"
                     }`}
             >
                 {label}
@@ -71,8 +71,8 @@ export const FloatingInput: React.FC<FloatingInputProps> = ({
                 onChange={onChange}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
-                className={`w-full bg-transparent border-2 border-muted hover:border-muted-foreground/50 focus:border-primary rounded-xl px-4 py-3 outline-none transition-all duration-200 ${Icon ? "pl-12" : ""
-                    } ${isTextArea ? "min-h-[120px] resize-none" : ""}`}
+                className={`w-full bg-transparent border-2 border-muted hover:border-muted-foreground/50 focus:border-primary rounded-xl px-4 py-2 outline-none transition-all duration-200 ${Icon ? "pl-12" : ""
+                    } ${isTextArea ? "min-h-[100px] resize-none" : ""}`}
                 {...(props as any)}
             />
         </div>

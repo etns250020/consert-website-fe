@@ -10,19 +10,19 @@ import { useState } from "react";
 const artists = [
   {
     name: "Arijit Singh",
-    image: "/Arijit Singh Aesthetic.jpg",
+    image: "/ar.png",
     vibe: "The voice that turns emotions into unforgettable melodies.",
   },
 
   {
     name: "Armaan Malik",
-    image: "/ArmaanMallik.jpg",
+    image: "/arman.jpg",
     vibe: "Romantic pop anthems that rule hearts across generations.",
   },
 
   {
     name: "Anirudh & Jonita",
-    image: "/JonitaAnnirudh.jpg",
+    image: "/ani-rudh.png",
     vibe: "High-energy beats blended with soulful vocals.",
   },
 
@@ -34,7 +34,7 @@ const artists = [
 
   {
     name: "Imran Khan",
-    image: "/Bohemia Rapper Wallpaper.jpg",
+    image: "/ik.jpg",
     vibe: "Global Punjabi vibes with iconic chartbusters.",
   },
 
@@ -233,12 +233,12 @@ const SchedulePage = () => {
                   {/* CARD */}
                   <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden">
                     {/* IMAGE SPACE */}
-                    <div className="relative h-50 bg-gradient-to-br from-[#1a0f2e] to-[#07070a] overflow-hidden">
+                    <div className="relative h-50 bg-gradient-to-br from-[#1a0f2e] to-[#07070a] overflow-hidden ">
                       {artist.image && (
                         <motion.img
                           src={artist.image}
                           alt={artist.name}
-                          className="w-full h-full p-3"
+                          className="w-full h-full p-3 object-cover rounded-md "
                           whileHover={{ scale: 1.1 }}
                           transition={{ duration: 0.6 }}
                         />
