@@ -2,8 +2,8 @@
 
 import * as React from 'react'
 import * as TabsPrimitive from '@radix-ui/react-tabs'
-
 import { cn } from '@/lib/utils'
+import { motion } from 'framer-motion'
 
 function Tabs({
   className,
@@ -12,7 +12,7 @@ function Tabs({
   return (
     <TabsPrimitive.Root
       data-slot="tabs"
-      className={cn('flex flex-col gap-2', className)}
+      className={cn('flex flex-col gap-4', className)}
       {...props}
     />
   )
@@ -22,15 +22,68 @@ function TabsList({
   className,
   ...props
 }: React.ComponentProps<typeof TabsPrimitive.List>) {
+
+  const listRef = React.useRef<HTMLDivElement>(null)
+  const [indicator, setIndicator] = React.useState({ width: 0, left: 0 })
+
+  React.useEffect(() => {
+    const updateIndicator = () => {
+      const activeTab = listRef.current?.querySelector(
+        '[data-state="active"]'
+      ) as HTMLElement | null
+
+      if (activeTab && listRef.current) {
+        const listRect = listRef.current.getBoundingClientRect()
+        const tabRect = activeTab.getBoundingClientRect()
+
+        setIndicator({
+          width: tabRect.width,
+          left: tabRect.left - listRect.left,
+        })
+      }
+    }
+
+    updateIndicator()
+
+    const observer = new MutationObserver(updateIndicator)
+    if (listRef.current) {
+      observer.observe(listRef.current, {
+        attributes: true,
+        subtree: true,
+        attributeFilter: ['data-state'],
+      })
+    }
+
+    window.addEventListener('resize', updateIndicator)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('resize', updateIndicator)
+    }
+  }, [])
+
   return (
     <TabsPrimitive.List
+      ref={listRef}
       data-slot="tabs-list"
       className={cn(
-        'bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]',
-        className,
+        'relative inline-flex w-full ml-8 border-b-1 justify-start gap-6 rounded-none h-auto p-0',
+        className
       )}
       {...props}
-    />
+    >
+      {props.children}
+
+      {/* Sliding Blue Indicator */}
+      <motion.div
+        className="absolute bottom-[-2px]  h-[3px] bg-[#FF5555] rounded-full left-0"
+        animate={{
+          width: indicator.width,
+          x: indicator.left,
+        }}
+        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      />
+    </TabsPrimitive.List>
   )
 }
 
@@ -42,8 +95,13 @@ function TabsTrigger({
     <TabsPrimitive.Trigger
       data-slot="tabs-trigger"
       className={cn(
-        "data-[state=active]:bg-background dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        className,
+        `
+        relative  py-2 text-sm font-medium
+        text-gray-400 bg-transparent border-none rounded-none
+        hover:text-[#FF5555]
+        data-[state=active]:text-[#FF5555]
+        `,
+        className
       )}
       {...props}
     />
@@ -57,7 +115,7 @@ function TabsContent({
   return (
     <TabsPrimitive.Content
       data-slot="tabs-content"
-      className={cn('flex-1 outline-none', className)}
+      className={cn('flex-1 outline-none pt-4', className)}
       {...props}
     />
   )

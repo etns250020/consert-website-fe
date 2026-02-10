@@ -22,6 +22,12 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs"
 import { Card, CardContent } from "@/components/ui/card"
 
 const heroMembers = [
@@ -29,6 +35,7 @@ const heroMembers = [
     id: 1,
     name: "Alex Johnson",
     role: "Event Coordinator",
+    department: "Management",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
     position: { top: "25%", left: "10%" }
   },
@@ -36,6 +43,7 @@ const heroMembers = [
     id: 2,
     name: "Sarah Williams",
     role: "Customer Success",
+    department: "Management",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop",
     position: { top: "65%", left: "15%" }
   },
@@ -43,6 +51,7 @@ const heroMembers = [
     id: 3,
     name: "Michael Chen",
     role: "Technical Lead",
+    department: "Technical",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop",
     position: { top: "30%", right: "10%" }
   },
@@ -50,6 +59,7 @@ const heroMembers = [
     id: 4,
     name: "Emily Davis",
     role: "Marketing Manager",
+    department: "Management",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop",
     position: { top: "70%", right: "15%" }
   }
@@ -61,24 +71,28 @@ const crewMembers = [
     id: 5,
     name: "Aisha Patel",
     role: "Stage Manager",
+    department: "Production",
     image: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=200&auto=format&fit=crop"
   },
   {
     id: 6,
     name: "James Wilson",
     role: "Sound Engineer",
+    department: "Technical",
     image: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=200&auto=format&fit=crop"
   },
   {
     id: 7,
     name: "Sophia Martinez",
     role: "Visual Designer",
+    department: "Production",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop"
   },
   {
     id: 8,
     name: "David Kim",
     role: "Logistics Lead",
+    department: "Management",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop"
   }
 ]
@@ -203,60 +217,77 @@ const ContactPage = () => {
           </p>
         </ScrollReveal>
 
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="w-auto mx-auto px-4 md:px-12"
-        >
-          <CarouselContent className="-ml-4 md:-ml-8">
-            {crewMembers.map((member) => (
-              <CarouselItem key={member.id} className="pl-4 md:pl-8 md:basis-1/2 lg:basis-1/4">
-                <ScrollReveal delay={member.id * 0.1}>
-                  <div className="group [perspective:1000px] w-full aspect-[3/4]">
-                    <motion.div
-                      className="relative w-full h-full transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]"
-                    >
-                      {/* Front Side */}
-                      <Card className="absolute inset-0 bg-glass border-none overflow-hidden p-0 [backface-visibility:hidden]">
-                        <CardContent className="p-0 h-full">
-                          <div className="relative h-full overflow-hidden">
-                            <img
-                              src={member.image}
-                              alt={member.name}
-                              className="w-full h-full object-cover"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60" />
-                            <div className="absolute bottom-0 left-0 p-6 w-full">
-                              <p className="text-white text-xl font-bold mb-0">{member.name}</p>
-                              <p className="text-[#ff5f6d] font-medium tracking-wide uppercase text-xs">{member.role}</p>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
+        <Tabs defaultValue="all" className="w-full">
+          <div className="flex  mb-4">
+            <TabsList className="  p-1">
+              <TabsTrigger value="all" className="px-4">All Crew</TabsTrigger>
+              <TabsTrigger value="Management" className="px-4">Management</TabsTrigger>
+              <TabsTrigger value="Production" className="px-4">Production</TabsTrigger>
+              <TabsTrigger value="Technical" className="px-4">Technical</TabsTrigger>
+            </TabsList>
+          </div>
 
-                      {/* Back Side */}
-                      <Card className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e] to-[#16213e] border border-white/10 overflow-hidden p-0 [backface-visibility:hidden] [transform:rotateY(180deg)] shadow-2xl">
-                        <CardContent className="p-0 h-full flex flex-col items-center justify-center text-center p-6">
-                          <div className="w-20 h-20 rounded-full border-2 border-[#ff5f6d] overflow-hidden mb-4">
-                            <img src={member.image} alt={member.name} className="w-full h-full object-cover scale-110" />
+          {["all", "Management", "Production", "Technical"].map((dept) => (
+            <TabsContent key={dept} value={dept} className="mt-0 outline-none">
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                className="w-auto mx-auto px-4 md:px-12"
+              >
+                <CarouselContent className="-ml-4 md:-ml-8">
+                  {crewMembers
+                    .filter(member => dept === "all" || member.department === dept)
+                    .map((member) => (
+                      <CarouselItem key={member.id} className="pl-4 md:pl-8 md:basis-1/2 lg:basis-1/4">
+                        <ScrollReveal delay={member.id * 0.1}>
+                          <div className="group [perspective:1000px] w-full aspect-[3/4]">
+                            <motion.div
+                              className="relative w-full h-full transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]"
+                            >
+                              {/* Front Side */}
+                              <Card className="absolute inset-0 bg-glass border-none overflow-hidden p-0 [backface-visibility:hidden]">
+                                <CardContent className="p-0 h-full">
+                                  <div className="relative h-full overflow-hidden">
+                                    <img
+                                      src={member.image}
+                                      alt={member.name}
+                                      className="w-full h-full object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60" />
+                                    <div className="absolute bottom-0 left-0 p-6 w-full">
+                                      <p className="text-white text-xl font-bold mb-0">{member.name}</p>
+                                      <p className="text-[#ff5f6d] font-medium tracking-wide uppercase text-xs">{member.role}</p>
+                                    </div>
+                                  </div>
+                                </CardContent>
+                              </Card>
+
+                              {/* Back Side */}
+                              <Card className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e] to-[#16213e] border border-white/10 overflow-hidden p-0 [backface-visibility:hidden] [transform:rotateY(180deg)] shadow-2xl">
+                                <CardContent className="p-0 h-full flex flex-col items-center justify-center text-center p-6">
+                                  <div className="w-20 h-20 rounded-full border-2 border-[#ff5f6d] overflow-hidden mb-4">
+                                    <img src={member.image} alt={member.name} className="w-full h-full object-cover scale-110" />
+                                  </div>
+                                  <h3 className="text-white text-2xl font-bold mb-2">{member.name}</h3>
+                                  <div className="w-12 h-1 bg-[#ff5f6d] rounded-full mb-4" />
+                                  <p className="text-gray-300 text-lg font-medium mb-1">{member.role}</p>
+                                  <p className="text-gray-500 text-sm mt-4 italic">"Expert in creating unforgettable experiences"</p>
+                                </CardContent>
+                              </Card>
+                            </motion.div>
                           </div>
-                          <h3 className="text-white text-2xl font-bold mb-2">{member.name}</h3>
-                          <div className="w-12 h-1 bg-[#ff5f6d] rounded-full mb-4" />
-                          <p className="text-gray-300 text-lg font-medium mb-1">{member.role}</p>
-                          <p className="text-gray-500 text-sm mt-4 italic">"Expert in creating unforgettable experiences"</p>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                  </div>
-                </ScrollReveal>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="hidden md:flex -left-4 bg-glass border-none text-white hover:bg-white/10" />
-          <CarouselNext className="hidden md:flex -right-4 bg-glass border-none text-white hover:bg-white/10" />
-        </Carousel>
+                        </ScrollReveal>
+                      </CarouselItem>
+                    ))}
+                </CarouselContent>
+                <CarouselPrevious className="hidden md:flex -left-4 bg-glass border-none text-white hover:bg-white/10" />
+                <CarouselNext className="hidden md:flex -right-4 bg-glass border-none text-white hover:bg-white/10" />
+              </Carousel>
+            </TabsContent>
+          ))}
+        </Tabs>
       </section>
       <h2 className="text-3xl font-bold text-white mb-0 flex items-center gap-4 px-36 mb-6">
         <span className="w-10 h-1 bg-[#ff5f6d] rounded-full" />
