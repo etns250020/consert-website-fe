@@ -1,37 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
-  Play,
   Music,
   Calendar,
   MapPin,
   Users,
   Star,
   ChevronRight,
-  Menu,
-  X,
-  Facebook,
-  Twitter,
-  Instagram,
-  Youtube,
 } from "lucide-react";
+import { DotPattern } from "@/components/ui/dot-pattern";
+import { Globe } from "@/components/magicui/globe";
+import { VideoText } from "@/components/ui/video-text";
+import { cn } from "@/lib/utils";
 
 const Home = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState("all");
-  // const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const navItems = [
-    "Home",
-    "Events",
-    "Artists",
-    "Gallery",
-    "Services",
-    "Contact",
-  ];
-  // Featured events data
   const featuredEvents = [
     {
       id: 1,
@@ -79,94 +65,89 @@ const Home = () => {
     { id: "classical", label: "Classical" },
   ];
 
-  // Filter events based on active category
   const filteredEvents =
     activeFilter === "all"
       ? featuredEvents
       : featuredEvents.filter((event) => event.category === activeFilter);
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
-      {/* Navigation */}
-      {/* <nav className="fixed top-0 w-full z-50 px-6 py-4 bg-black/80 backdrop-blur-md"> */}
+    <div className=" min-h-screen relative bg-black text-white overflow-x-hidden w-full">
+      {/* Animated Dot Pattern Background */}
+      <DotPattern
+        className={cn(
+          "[mask-image:radial-gradient(1900px_circle_at_center,white,transparent)]",
+        )}
+      />
 
-      {/* Hero Section with Video Background */}
-      <section className="relative h-screen flex  items-center justify-center overflow-hidden">
-        {/* Video Background */}
-        <div className="h-15 bg-blue-300">
-
-        </div>
-        <div className="absolute inset-0 z-0 ">
-          {/* This would be your high-quality AI generated concert video */}
-
-          <div>
-            <img src="/textImg.jpg" alt="" />
-          </div>
-        </div>
-
-
-        {/* Hero Content */}
-        <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden py-20">
+        <div className="container px-4 md:px-6 z-10 flex flex-col items-center text-center">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            className="absolute -top-10 md:-top-20 z-0 opacity-50"
           >
-            <motion.h1
-              className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
-              initial={{ opacity: 0, y: -120 }}
+            <Globe className="w-[300px] h-[300px] md:w-[600px] md:h-[600px] mt-30" />
+          </motion.div>
+
+          <div className="relative z-10 space-y-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 0.2,
-                type: "spring",
-                stiffness: 90,
-                damping: 6,
-                mass: 0.8,
-              }}
+              transition={{ duration: 0.8 }}
             >
-              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
-                EXPERIENCE
-              </span>
+              <VideoText
+                src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJieHhzZnJ6ZHJ6ZHJ6ZHJ6ZHJ6ZHJ6ZHJ6ZHJ6ZHJ6ZHJ6ZHJ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKMGpxxWlVQVPhK/giphy.mp4"
+                className="font-bold tracking-tighter"
+                fontSize={12}
+              >
+                VIBE EVENTS
+              </VideoText>
+            </motion.div>
+
+            <motion.h1
+              className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent animate-pulse"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+            >
+              Experience The Ultimate
               <br />
-              <span className="text-white">THE ULTIMATE</span>
-              <br />
-              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                CONCERT VIBE
-              </span>
+              <span className="text-white">Concert Revolution</span>
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="max-w-[700px] mx-auto text-gray-400 text-lg md:text-xl"
             >
-              We create unforgettable musical experiences with world-class
-              production, cutting-edge technology, and immersive atmospheres.
+              Where cutting-edge technology meets world-class production for an unforgettable musical journey.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              transition={{ delay: 0.6, duration: 0.8 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
             >
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-bold text-lg flex items-center justify-center gap-2"
+                className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-bold text-lg flex items-center justify-center gap-2 shadow-lg shadow-purple-500/25"
               >
                 Explore Events <ChevronRight className="w-5 h-5" />
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-white/10 backdrop-blur-sm rounded-full font-bold text-lg hover:bg-white/20 transition-colors"
+                className="px-8 py-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-full font-bold text-lg hover:bg-white/10 transition-all"
               >
                 Our Services
               </motion.button>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Scroll indicator */}
@@ -175,32 +156,29 @@ const Home = () => {
           transition={{ repeat: Infinity, duration: 1.5 }}
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
         >
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white/50 rounded-full mt-2" />
+          <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white/40 rounded-full mt-2" />
           </div>
         </motion.div>
       </section>
 
       {/* Featured Events Section */}
-      <section
-        className="py-20 px-4 max-w-7xl mx-auto bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/testingImg2.jpg')" }}
-      >
+      <section className="relative py-24 z-10 px-4 max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
             <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Featured
             </span>{" "}
             <span className="text-white">Events</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto font-light">
             Discover the most anticipated concerts and festivals curated for the
-            ultimate music experience
+            ultimate music experience.
           </p>
         </motion.div>
 
@@ -209,15 +187,15 @@ const Home = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          className="flex flex-wrap justify-center gap-3 mb-16"
         >
           {eventCategories.map((category) => (
             <button
               key={category.id}
               onClick={() => setActiveFilter(category.id)}
-              className={`px-6 py-3 rounded-full font-medium transition-all ${activeFilter === category.id
-                  ? "bg-gradient-to-r from-purple-600 to-pink-600"
-                  : "bg-white/10 hover:bg-white/20"
+              className={`px-8 py-3 rounded-full font-medium transition-all ${activeFilter === category.id
+                ? "bg-gradient-to-r from-purple-600 to-pink-600 shadow-lg shadow-purple-500/20"
+                : "bg-white/5 border border-white/10 hover:bg-white/10"
                 }`}
             >
               {category.label}
@@ -235,41 +213,47 @@ const Home = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -10 }}
-              className={`bg-gradient-to-br from-gray-900 to-black rounded-2xl overflow-hidden border border-gray-800 group cursor-pointer ${event.featured ? "md:col-span-2 md:row-span-2" : ""
+              className={`group relative bg-white/5 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/10 cursor-pointer ${event.featured ? "md:col-span-2 md:row-span-2" : ""
                 }`}
             >
               <div className="relative h-64 overflow-hidden">
-                {/* Event image placeholder */}
-                <div className="w-full h-full bg-gradient-to-r from-purple-900/50 to-pink-900/50 flex items-center justify-center">
-                  <Music className="w-20 h-20 text-white/30" />
+                <div className="w-full h-full bg-gradient-to-br from-purple-900/40 to-pink-900/40 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                  <Music className="w-16 h-16 text-white/20" />
                 </div>
                 {event.featured && (
-                  <div className="absolute top-4 left-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-black font-bold px-3 py-1 rounded-full text-sm">
+                  <div className="absolute top-6 left-6 bg-gradient-to-r from-yellow-500 to-orange-500 text-black font-extrabold px-4 py-1.5 rounded-full text-xs tracking-widest uppercase">
                     FEATURED
                   </div>
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <button className="px-6 py-3 bg-white rounded-full font-bold text-black hover:bg-gray-200 transition-colors">
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <button className="px-8 py-3 bg-white text-black rounded-full font-bold hover:bg-gray-200 transition-colors shadow-xl">
                     Get Tickets
                   </button>
                 </div>
               </div>
 
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">{event.title}</h3>
-                <div className="flex items-center text-gray-400 text-sm mb-4">
-                  <Calendar className="w-4 h-4 mr-2" />
-                  <span>{event.date}</span>
-                  <MapPin className="w-4 h-4 ml-4 mr-2" />
-                  <span>{event.location}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <button className="text-purple-400 font-semibold hover:text-purple-300 transition-colors flex items-center">
-                    More Info <ChevronRight className="w-4 h-4 ml-1" />
-                  </button>
+              <div className="p-8">
+                <h3 className="text-2xl font-bold mb-3 group-hover:text-purple-400 transition-colors">
+                  {event.title}
+                </h3>
+                <div className="flex flex-col gap-2 text-gray-400 text-sm mb-6">
                   <div className="flex items-center">
-                    <Star className="w-4 h-4 text-yellow-500 mr-1" />
-                    <span className="text-sm">4.8</span>
+                    <Calendar className="w-4 h-4 mr-2 text-purple-500" />
+                    <span>{event.date}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <MapPin className="w-4 h-4 mr-2 text-pink-500" />
+                    <span>{event.location}</span>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center pt-4 border-t border-white/5">
+                  <button className="text-purple-400 font-semibold hover:text-purple-300 transition-colors flex items-center group/btn">
+                    More Info <ChevronRight className="w-4 h-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
+                  </button>
+                  <div className="flex items-center bg-white/5 px-2 py-1 rounded-lg">
+                    <Star className="w-3 h-3 text-yellow-500 mr-1 fill-yellow-500" />
+                    <span className="text-xs font-bold">4.8</span>
                   </div>
                 </div>
               </div>
@@ -279,29 +263,29 @@ const Home = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 px-4 bg-gradient-to-r from-purple-900/20 to-pink-900/20">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative py-24 z-10">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
               {
                 value: "500+",
                 label: "Events Organized",
-                icon: <Calendar className="w-8 h-8" />,
+                icon: <Calendar className="w-6 h-6" />,
               },
               {
                 value: "1M+",
                 label: "Happy Attendees",
-                icon: <Users className="w-8 h-8" />,
+                icon: <Users className="w-6 h-6" />,
               },
               {
                 value: "50+",
                 label: "Cities",
-                icon: <MapPin className="w-8 h-8" />,
+                icon: <MapPin className="w-6 h-6" />,
               },
               {
                 value: "100+",
                 label: "Top Artists",
-                icon: <Star className="w-8 h-8" />,
+                icon: <Star className="w-6 h-6" />,
               },
             ].map((stat, index) => (
               <motion.div
@@ -310,13 +294,17 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="text-center"
+                className="text-center group"
               >
-                <div className="inline-block p-4 bg-white/10 rounded-2xl mb-4">
+                <div className="inline-block p-5 bg-white/5 rounded-3xl mb-6 group-hover:scale-110 group-hover:bg-purple-600/20 transition-all duration-300">
                   <div className="text-purple-400">{stat.icon}</div>
                 </div>
-                <div className="text-4xl font-bold mb-2">{stat.value}</div>
-                <div className="text-gray-400">{stat.label}</div>
+                <div className="text-5xl font-bold mb-2 bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">
+                  {stat.value}
+                </div>
+                <div className="text-gray-500 font-medium tracking-wide uppercase text-xs">
+                  {stat.label}
+                </div>
               </motion.div>
             ))}
           </div>
@@ -324,43 +312,42 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 max-w-5xl mx-auto text-center">
+      <section className="relative py-32 z-10 px-4 max-w-6xl mx-auto text-center">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-purple-900/30 via-black to-pink-900/30 p-12 border border-gray-800"
+          className="relative overflow-hidden rounded-[40px] bg-gradient-to-br from-purple-900/20 via-black to-pink-900/20 p-16 md:p-24 border border-white/10 shadow-3xl"
         >
-          {/* Animated background elements */}
-          <div className="absolute -top-20 -right-20 w-60 h-60 bg-purple-600/10 rounded-full blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-pink-600/10 rounded-full blur-3xl" />
+          {/* Decorative glows */}
+          <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-purple-600/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-pink-600/10 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2" />
 
           <div className="relative z-10">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">
               Ready to Create an
+              <br />
               <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                {" "}
                 Unforgettable Event?
               </span>
             </h2>
-            <p className="text-gray-400 text-xl mb-10 max-w-2xl mx-auto">
-              Let's work together to bring your vision to life with our expert
-              event planning and production services.
+            <p className="text-gray-400 text-xl mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+              Join forces with us to bring your creative vision to life with world-class planning and production.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-bold text-lg"
+                className="px-10 py-5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-bold text-xl shadow-2xl shadow-purple-600/20"
               >
                 Contact Our Team
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-white/10 backdrop-blur-sm rounded-full font-bold text-lg hover:bg-white/20 transition-colors"
+                className="px-10 py-5 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full font-bold text-xl hover:bg-white/10 transition-all font-outfit"
               >
-                View Our Portfolio
+                View Portfolio
               </motion.button>
             </div>
           </div>
@@ -371,68 +358,3 @@ const Home = () => {
 };
 
 export default Home;
-
-// {/* Footer */}
-// <footer className="bg-black border-t border-gray-900 pt-12 pb-8 px-4">
-//   <div className="max-w-7xl mx-auto">
-//     <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-//       <div>
-//         <div className="flex items-center space-x-2 mb-6">
-//           <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg flex items-center justify-center">
-//             <Music className="w-6 h-6" />
-//           </div>
-//           <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-//             VIBE<span className="text-white">EVENTS</span>
-//           </span>
-//         </div>
-//         <p className="text-gray-400 mb-6">
-//           Creating unforgettable concert experiences through innovation, passion, and cutting-edge production.
-//         </p>
-//         <div className="flex space-x-4">
-//           {[Facebook, Twitter, Instagram, Youtube].map((Icon, index) => (
-//             <motion.a
-//               key={index}
-//               whileHover={{ y: -5 }}
-//               href="#"
-//               className="w-10 h-10 bg-gray-900 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 transition-all"
-//             >
-//               <Icon className="w-5 h-5" />
-//             </motion.a>
-//           ))}
-//         </div>
-//       </div>
-
-//       {[
-//         {
-//           title: "Quick Links",
-//           links: ["Home", "Events", "Artists", "Services", "Gallery", "Contact"]
-//         },
-//         {
-//           title: "Services",
-//           links: ["Event Planning", "Stage Production", "Audio/Visual", "Marketing", "Ticketing", "VIP Services"]
-//         },
-//         {
-//           title: "Contact",
-//           links: ["hello@vibeevents.com", "+1 (555) 123-4567", "123 Concert Ave, Los Angeles, CA"]
-//         }
-//       ].map((column, index) => (
-//         <div key={index}>
-//           <h3 className="text-xl font-bold mb-6">{column.title}</h3>
-//           <ul className="space-y-4">
-//             {column.links.map((link, idx) => (
-//               <li key={idx}>
-//                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
-//                   {link}
-//                 </a>
-//               </li>
-//             ))}
-//           </ul>
-//         </div>
-//       ))}
-//     </div>
-
-//     <div className="pt-8 border-t border-gray-900 text-center text-gray-500">
-//       <p>&copy; {new Date().getFullYear()} VIBE EVENTS. All rights reserved. | Designed with ❤️ for music lovers worldwide</p>
-//     </div>
-//   </div>
-// </footer>

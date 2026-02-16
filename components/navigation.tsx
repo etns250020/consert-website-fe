@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { BookNowDialog } from "@/app/schedule/BookPop";
+import { AnimatedThemeToggler } from "./magicui/animated-theme-toggler";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -22,10 +23,7 @@ export function Navigation() {
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 h-16 backdrop-blur-xl border-b border-white/10 shadow-xl"
-      style={{
-        background: "linear-gradient(to right, #ccffff 0%, #990033 90%)",
-      }}
+      className="fixed top-0 left-0 right-0 z-50 h-16 backdrop-blur-xl border-b border-white/10 shadow-xl bg-background/80"
     >
       <div className="h-full px-4 sm:px-6 lg:px-8">
         <div className="h-full max-w-7xl mx-auto flex items-center justify-between">
@@ -67,8 +65,9 @@ export function Navigation() {
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="ml-8"
+              className="ml-8 flex items-center space-x-4"
             >
+              <AnimatedThemeToggler />
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -83,17 +82,20 @@ export function Navigation() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden z-50 p-2 rounded-lg hover:bg-white/10 transition-colors duration-200"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          >
-            {isMenuOpen ? (
-              <X size={28} className="text-white" />
-            ) : (
-              <Menu size={28} className="text-white" />
-            )}
-          </button>
+          <div className="flex items-center space-x-4 lg:hidden">
+            <AnimatedThemeToggler />
+            <button
+              className="z-50 p-2 rounded-lg hover:bg-white/10 transition-colors duration-200"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            >
+              {isMenuOpen ? (
+                <X size={28} className="text-white" />
+              ) : (
+                <Menu size={28} className="text-white" />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 

@@ -6,6 +6,7 @@ import "./globals.css"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { MusicalBackground } from "@/components/musical-background"
+import { ThemeProvider } from "@/components/theme-provider"
 
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
@@ -16,16 +17,22 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className="font-sans antialiased text-white">
-
-        <div className="relative z-10">
-          <Navigation />
-          {children}
-          <Footer />
-        </div>
-        {/* <MusicalBackground /> */}
-        <Analytics />
+    <html lang="en" suppressHydrationWarning>
+      <body className="font-sans antialiased bg-background text-foreground transition-colors duration-300">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="relative z-10">
+            <Navigation />
+            {children}
+            <Footer />
+          </div>
+          {/* <MusicalBackground /> */}
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   )
