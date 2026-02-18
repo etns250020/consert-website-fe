@@ -1,129 +1,111 @@
-import Link from "next/link"
+"use client";
 
-export function Footer() {
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Twitter, Instagram, Youtube, Facebook } from "lucide-react";
+
+export const Footer = () => {
   return (
-    <footer className="bg-card border-t border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-          {/* Event Info */}
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold">♪</span>
-              </div>
-              <h3 className="font-bold">SoundWave Festival</h3>
-            </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              Experience the ultimate music festival featuring world-class artists and unforgettable performances.
-            </p>
-            <p className="text-sm font-semibold">25 - 27 July 2026</p>
-            <p className="text-sm text-muted-foreground">Golden Valley Park, California</p>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-bold mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/lineup" className="text-muted-foreground hover:text-primary transition-colors">
-                  Lineup
-                </Link>
-              </li>
-              <li>
-                <Link href="/schedule" className="text-muted-foreground hover:text-primary transition-colors">
-                  Schedule
-                </Link>
-              </li>
-              <li>
-                <Link href="/tickets" className="text-muted-foreground hover:text-primary transition-colors">
-                  Tickets
-                </Link>
-              </li>
+    <footer className="pt-24 pb-12 bg-black border-t border-white/10">
+      <div className="container mx-auto px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-24">
+          <div className="lg:col-span-1">
+            <h4 className="text-white font-bold text-sm tracking-widest mb-6 uppercase">Explore</h4>
+            <ul className="space-y-4">
+              {["Home", "Performances", "VIP Experience", "Gallery"].map((link) => (
+                <li key={link}>
+                  <Link href="#" className="text-white/40 hover:text-white transition-colors text-xs font-semibold tracking-wide">
+                    {link}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Venue & Contact */}
-          <div>
-            <h4 className="font-bold mb-4">Venue & Contact</h4>
-            <p className="text-sm text-muted-foreground mb-2">
-              Golden Valley Park
-              <br />
-              Los Angeles, CA 90001
-            </p>
-            <p className="text-sm mb-3">
-              <a href="tel:+1234567890" className="text-muted-foreground hover:text-primary transition-colors">
-                +1 (234) 567-890
-              </a>
-            </p>
-            <p className="text-sm">
-              <a
-                href="mailto:info@soundwave.com"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                info@soundwave.com
-              </a>
-            </p>
+          <div className="lg:col-span-1">
+            <h4 className="text-white font-bold text-sm tracking-widest mb-6 uppercase">Support</h4>
+            <ul className="space-y-4">
+              {["Connect", "Events", "Places", "Documentation"].map((link) => (
+                <li key={link}>
+                  <Link href="#" className="text-white/40 hover:text-white transition-colors text-xs font-semibold tracking-wide">
+                    {link}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Social & Newsletter */}
-          <div>
-            <h4 className="font-bold mb-4">Follow Us</h4>
-            <div className="flex gap-3 mb-6">
-              <a
-                href="#"
-                className="w-10 h-10 rounded-lg bg-primary/20 hover:bg-primary/30 flex items-center justify-center text-sm transition-colors"
-              >
-                f
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-lg bg-primary/20 hover:bg-primary/30 flex items-center justify-center text-sm transition-colors"
-              >
-                𝕏
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-lg bg-primary/20 hover:bg-primary/30 flex items-center justify-center text-sm transition-colors"
-              >
-                🎵
-              </a>
+          <div className="lg:col-span-1">
+            <h4 className="text-white font-bold text-sm tracking-widest mb-6 uppercase">Legal</h4>
+            <ul className="space-y-4">
+              {["About Us", "Contact Us", "Reviews", "Privacy Policy"].map((link) => (
+                <li key={link}>
+                  <Link href="#" className="text-white/40 hover:text-white transition-colors text-xs font-semibold tracking-wide">
+                    {link}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="lg:col-span-2">
+            <h4 className="text-white font-bold text-sm tracking-widest mb-6 uppercase">Newsletter</h4>
+            <p className="text-white/40 text-[10px] leading-relaxed mb-6 max-w-xs">
+              "Performance is path-world to create a novel performance memories."
+            </p>
+            <div className="flex gap-2">
+              <input
+                type="email"
+                placeholder="Email Address"
+                className="bg-white/5 border border-white/10 rounded-full px-6 py-3 text-xs text-white flex-1 focus:outline-none focus:border-yellow-500/50 transition-colors"
+              />
+              <Button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-full px-6 py-3 text-xs tracking-widest shrink-0">
+                CONNECT US
+              </Button>
             </div>
-            <p className="text-xs font-semibold mb-2 text-muted-foreground">Newsletter</p>
-            <input
-              type="email"
-              placeholder="Your email"
-              className="w-full px-3 py-2 bg-background border border-border rounded-lg text-sm mb-2"
-            />
-            <button className="w-full px-3 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-semibold transition-colors">
-              Subscribe
-            </button>
+
+            <div className="mt-8 flex gap-6">
+              <Link href="#" className="text-white/40 hover:text-white transition-colors">
+                <Facebook className="w-4 h-4" />
+              </Link>
+              <Link href="#" className="text-white/40 hover:text-white transition-colors">
+                <Twitter className="w-4 h-4" />
+              </Link>
+              <Link href="#" className="text-white/40 hover:text-white transition-colors">
+                <Youtube className="w-4 h-4" />
+              </Link>
+              <Link href="#" className="text-white/40 hover:text-white transition-colors">
+                <Facebook className="w-4 h-4" /> {/* Instagram placeholder */}
+              </Link>
+            </div>
           </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="border-t border-border pt-8">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-            <p>&copy; 2026 SoundWave Festival. All Rights Reserved.</p>
-            <div className="flex gap-6">
-              <Link href="#" className="hover:text-primary transition-colors">
-                Terms & Conditions
-              </Link>
-              <Link href="#" className="hover:text-primary transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="#" className="hover:text-primary transition-colors">
-                Refund Policy
-              </Link>
+        <div className="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-white/5 gap-8">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 rounded-full bg-yellow-500 flex items-center justify-center">
+              <span className="text-black font-bold text-[8px]">V</span>
+            </div>
+            <span className="text-white text-[10px] font-bold tracking-[0.2em]">VANTAGE LIVE</span>
+          </div>
+
+          <div className="flex gap-8 text-[8px] font-bold tracking-widest text-white/40">
+            <Link href="#" className="hover:text-white transition-colors uppercase">Privacy</Link>
+            <Link href="#" className="hover:text-white transition-colors uppercase">Terms</Link>
+            <Link href="#" className="hover:text-white transition-colors uppercase">Press</Link>
+            <Link href="#" className="hover:text-white transition-colors uppercase">Instagram</Link>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white cursor-pointer transition-colors">
+              <span className="text-xs">⚑</span>
+            </div>
+            <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white cursor-pointer transition-colors">
+              <span className="text-xs">⚙</span>
             </div>
           </div>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
