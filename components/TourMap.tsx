@@ -17,6 +17,9 @@ import { AnimatedBeam } from "@/components/ui/animated-beam"
 import { Meteors } from "@/components/ui/meteors"
 import confetti from "canvas-confetti"
 import { Button } from "./ui/button"
+import { useRouter } from "next/navigation"
+
+
 
 const Circle = forwardRef<
     HTMLDivElement,
@@ -87,6 +90,15 @@ export function TourMap() {
         setTimeout(shoot, 100)
         setTimeout(shoot, 200)
     }
+    const router = useRouter()
+    const navigation = async (path?: string) => {
+        handleClick()
+
+        if (path) {
+            await new Promise((resolve) => setTimeout(resolve, 500))
+            router.push(path)
+        }
+    }
     return (
         <div
             className="relative flex min-h-[800px] w-full items-center justify-center overflow-hidden   bg-black py-24"
@@ -105,13 +117,13 @@ export function TourMap() {
                 {/* Left Side Nodes */}
                 <div className="flex flex-col gap-24">
                     <Circle ref={lineupRef} label="Lineup" className="border-cyan-500/30">
-                        <Button className="bg-transparent hover:bg-transparent" onClick={handleClick}><Star className="size-8 text-cyan-400" /></Button>
+                        <Button className="bg-transparent hover:bg-transparent" onClick={() => navigation("/schedule")}><Star className="size-8 text-cyan-400" /></Button>
                     </Circle>
                     <Circle ref={sponsorsRef} label="Sponsors" className="border-yellow-500/30">
-                        <Button className="bg-transparent hover:bg-transparent" onClick={handleClick}> <Trophy className="size-8 text-yellow-400" /></Button>
+                        <Button className="bg-transparent hover:bg-transparent" onClick={() => navigation("/sponsors")}><Trophy className="size-8 text-yellow-400" /></Button>
                     </Circle>
                     <Circle ref={galleryRef} label="Gallery" className="border-pink-500/30">
-                        <Button className="bg-transparent hover:bg-transparent" onClick={handleClick}> <ImageIcon className="size-8 text-pink-400" /></Button>
+                        <Button className="bg-transparent hover:bg-transparent" onClick={() => navigation("/gallery")}><ImageIcon className="size-8 text-pink-400" /></Button>
                     </Circle>
                 </div>
 
@@ -150,13 +162,13 @@ export function TourMap() {
                 {/* Right Side Nodes */}
                 <div className="flex flex-col gap-24">
                     <Circle ref={scheduleRef} label="Schedule" labelPosition="top" className="border-purple-500/30">
-                        <Button className="bg-transparent hover:bg-transparent" onClick={handleClick}><Calendar className="size-8 text-purple-400" /></Button>
+                        <Button className="bg-transparent hover:bg-transparent" onClick={() => { navigation("/schedule") }}><Calendar className="size-8 text-purple-400" /></Button>
                     </Circle>
                     <Circle ref={venueRef} label="Venue" labelPosition="top" className="border-orange-500/30">
-                        <Button className="bg-transparent hover:bg-transparent" onClick={handleClick}><MapPin className="size-8 text-orange-400" /></Button>
+                        <Button className="bg-transparent hover:bg-transparent" onClick={() => { navigation("/venue") }}><MapPin className="size-8 text-orange-400" /></Button>
                     </Circle>
                     <Circle ref={ticketsRef} label="Tickets" labelPosition="top" className="border-green-500/30">
-                        <Button className="bg-transparent hover:bg-transparent" onClick={handleClick}><Ticket className="size-8 text-green-400" /></Button>
+                        <Button className="bg-transparent hover:bg-transparent" onClick={() => { navigation("/contact") }}><Ticket className="size-8 text-green-400" /></Button>
                     </Circle>
                 </div>
             </div>
