@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { BookNowDialog } from "@/app/schedule/BookPop";
 import { AnimatedThemeToggler } from "./magicui/animated-theme-toggler";
+import { RainbowButton } from "./ui/rainbow-button";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -22,9 +23,7 @@ export function Navigation() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav
-      className="fixed top-0 left-0 right-0 z-50 h-16 backdrop-blur-xl border-b border-white/10 shadow-xl bg-background/80"
-    >
+    <nav className="fixed top-0 left-0 right-0 z-50 h-16 backdrop-blur-xl border-b border-white/10 shadow-xl bg-background/80">
       <div className="h-full px-4 sm:px-6 lg:px-8">
         <div className="h-full max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
@@ -67,18 +66,16 @@ export function Navigation() {
               animate={{ opacity: 1, scale: 1 }}
               className="ml-8 flex items-center space-x-4"
             >
-              <AnimatedThemeToggler />
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setOpen(true)}
-                className="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full"
-              >
-                Book Now
-              </motion.button>
-
-              <BookNowDialog open={open} onOpenChange={setOpen} />
+              {/* <AnimatedThemeToggler /> */}
             </motion.div>
+            <RainbowButton
+              onClick={() => setOpen(true)}
+              className="px-6 py-3.5 font-semibold border-3   text-purple-600 rounded-full"
+            >
+              {" "}
+              Book Now
+            </RainbowButton>
+            <BookNowDialog open={open} onOpenChange={setOpen} />
           </div>
 
           {/* Mobile Menu Button */}

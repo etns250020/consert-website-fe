@@ -31,6 +31,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
+import { CoolMode } from "@/components/ui/cool-mode";
 
 // First, update your Sponsor type to include img property
 interface Sponsor {
@@ -405,10 +406,12 @@ export default function SponsorsPage() {
                           variant="outline"
                           className="mt-4 bg-transparent border-white/20 hover:border-white/40 hover:bg-white/5 transition-all duration-300 group-hover:scale-105"
                         >
-                          <span className="flex items-center gap-2">
-                            View Partnership Details
-                            <Sparkles className="w-4 h-4" />
-                          </span>
+                          <CoolMode>
+                            <span className="flex items-center gap-2">
+                              View Partnership Details
+                              <Sparkles className="w-4 h-4" />
+                            </span>
+                          </CoolMode>
                         </Button>
                       </DialogTrigger>
                       <DialogContent className="bg-black/95 backdrop-blur-xl border-white/20 text-white max-w-lg">

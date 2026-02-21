@@ -1,5 +1,7 @@
 "use client";
 
+import { StripedPattern } from "@/components/magicui/striped-pattern";
+import { DotPattern } from "@/components/ui/dot-pattern";
 import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
 import { useState } from "react";
@@ -77,6 +79,7 @@ const SchedulePage = () => {
         <div className="relative z-10 max-w-6xl mx-auto px-6 py-24 w-full">
           {" "}
           {/* Header */}{" "}
+          
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -205,6 +208,8 @@ const SchedulePage = () => {
           VOTE YOUR ARTIST
       ======================== */}
       <section className="relative py-28 px-6">
+         <DotPattern />
+          
         <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-900/10 to-black" />
 
         <div className="relative z-10 max-w-7xl mx-auto">
@@ -213,6 +218,7 @@ const SchedulePage = () => {
           </h2>
 
           {/* GRID */}
+         
           <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-8">
             {artists.map((artist, i) => {
               const isFav = favorites.includes(artist.name);
@@ -233,6 +239,7 @@ const SchedulePage = () => {
                   {/* CARD */}
                   <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden">
                     {/* IMAGE SPACE */}
+                 
                     <div className="relative h-50 bg-gradient-to-br from-[#1a0f2e] to-[#07070a] overflow-hidden ">
                       {artist.image && (
                         <motion.img
@@ -280,6 +287,7 @@ const SchedulePage = () => {
             })}
           </div>
         </div>
+        
       </section>
     </div>
   );
