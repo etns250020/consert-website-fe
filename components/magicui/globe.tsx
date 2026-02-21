@@ -54,7 +54,7 @@ export function Globe({ className }: { className?: string }) {
         >
             <canvas
                 ref={canvasRef}
-                style={{ width: "100%", height: "100%", contain: "layout paint opacity" }}
+                style={{ width: "80%", height: "80%", contain: "layout paint opacity" }}
             />
         </div>
     );
