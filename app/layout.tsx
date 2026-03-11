@@ -29,7 +29,7 @@ export default function RootLayout({
           <div className="relative z-10">
             <Navigation />
             {children}
-            <Footer />
+            {/* <Footer /> */}
           </div>
           {/* <MusicalBackground /> */}
           <Analytics />

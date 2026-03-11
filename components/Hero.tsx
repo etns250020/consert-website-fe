@@ -23,7 +23,7 @@ export const Hero = ({ backgroundImage }: { backgroundImage: string }) => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-yellow-500 font-bold tracking-[0.3em] text-xs mb-4"
+                    className="text-yellow-500 font-bold tracking-[0.3em] text-xs mb-4 mt-5"
                 >
                     LIMITED ENGAGEMENT SERIES
                 </motion.p>
@@ -32,7 +32,7 @@ export const Hero = ({ backgroundImage }: { backgroundImage: string }) => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
-                    className="text-white text-6xl md:text-8xl font-serif italic mb-6 leading-tight"
+                    className="text-white text-5xl md:text-[90px] font-serif italic mb-2 leading-tight"
                 >
                     The Pinnacle of <br /> Live Sound
                 </motion.h1>
@@ -41,7 +41,7 @@ export const Hero = ({ backgroundImage }: { backgroundImage: string }) => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.6 }}
-                    className="text-white/60 text-lg md:text-xl font-light max-w-2xl mx-auto mb-10"
+                    className="text-white/60 text-lg md:text-xl font-light max-w-2xl mx-auto mb-5"
                 >
                     Experience the world's most exclusive performances with ultra-high fidelity.<br />
                     A cinematic journey through sound, light and intimacy.
